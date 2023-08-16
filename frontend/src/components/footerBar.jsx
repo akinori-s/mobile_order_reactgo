@@ -8,7 +8,7 @@ function FooterBar() {
 			<div className="flex justify-around items-center h-full">
 				<Link to='/' className="text-white">Menu</Link>
 				<Link to='/cart' className="text-white">Cart</Link>
-				<button className="text-white">Checkout</button>
+				<Link to='/checkout' className="text-white">Checkout</Link>
 			</div>
 		</div>
 	)
