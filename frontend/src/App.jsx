@@ -1,33 +1,57 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="flex flex-col bg-gray-100 h-screen">
+        {/* Carousel */}
+        <div className="h-2/5 overflow-x-scroll whitespace-nowrap py-4">
+          {/* Sample carousel items */}
+          <div className="inline-block w-2/3 h-full bg-blue-500 mx-2 rounded-md"></div>
+          <div className="inline-block w-2/3 h-full bg-red-500 mx-2 rounded-md"></div>
+          <div className="inline-block w-2/3 h-full bg-green-500 mx-2 rounded-md"></div>
+        </div>
+
+        <div className="flex-grow flex overflow-hidden">
+          {/* Sidebar */}
+          <div className="w-1/5 bg-gray-200 overflow-y-scroll">
+            <div className="py-2 pl-2 pr-2 border-b">Category 1</div>
+            <div className="py-2 pl-2 pr-2 border-b">Category 2</div>
+            <div className="py-2 pl-2 pr-2 border-b">Category 3</div>
+          </div>
+
+          {/* Vertical scrolling menu */}
+          <div className="w-4/5 overflow-y-scroll">
+            <div className="p-4 border-b">Item 1</div>
+            <div className="p-4 border-b">Item 2</div>
+            <div className="p-4 border-b">Item 3</div>
+            <div className="p-4 border-b">Item 4</div>
+            <div className="p-4 border-b">Item 5</div>
+            <div className="p-4 border-b">Item 6</div>
+            <div className="p-4 border-b">Item 7</div>
+            <div className="p-4 border-b">Item 8</div>
+            <div className="p-4 border-b">Item 9</div>
+            <div className="p-4 border-b">Item 10</div>
+            <div className="p-4 border-b">Item 10</div>
+            <div className="p-4 border-b">Item 10</div>
+            <div className="p-4 border-b">Item 10</div>
+            <div className="p-4 border-b">Item 10</div>
+            <div className="p-4 border-b">Item 10</div>
+            <div className="p-4 border-b">Item 10</div>
+            <div className="p-4 border-b">Item 10</div>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="bg-gray-900 h-20">
+          <div className="flex justify-around items-center h-full">
+            <button className="text-white">Menu</button>
+            <button className="text-white">Cart</button>
+            <button className="text-white">Checkout</button>
+          </div>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
