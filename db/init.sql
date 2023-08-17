@@ -46,6 +46,13 @@ CREATE TABLE ORDER_DETAILS (
 	SUB_TOTAL NUMERIC(10,2) NOT NULL
 );
 
+-- Promotions
+CREATE TABLE PROMOTIONS (
+	ID SERIAL PRIMARY KEY,
+	NAME VARCHAR(100) NOT NULL CHECK (NAME <> ''),
+	DESCRIPTION TEXT NOT NULL CHECK (DESCRIPTION <> ''),
+	IMG_PATH TEXT NOT NULL CHECK (IMG_PATH <> '')
+);
 
 -- Insert data
 INSERT INTO MENU_CATEGORY (NAME) VALUES ('Burgers');
@@ -97,3 +104,7 @@ INSERT INTO ORDER_DETAILS (TRANSACTION_ID, ITEM_ID, QUANTITY, SUB_TOTAL) VALUES 
 
 INSERT INTO ORDER_DETAILS (TRANSACTION_ID, ITEM_ID, QUANTITY, SUB_TOTAL) VALUES (3, 6, 1, 7.99);
 INSERT INTO ORDER_DETAILS (TRANSACTION_ID, ITEM_ID, QUANTITY, SUB_TOTAL) VALUES (3, 11, 1, 2.49);
+
+INSERT INTO PROMOTIONS (NAME, DESCRIPTION, IMG_PATH) VALUES ('Curry Shack', 'Curry fries and curry burger', 'https://akinori-s.github.io/mobile_order_reactgo/frontend/src/assets/curry_shack.jpg');
+INSERT INTO PROMOTIONS (NAME, DESCRIPTION, IMG_PATH) VALUES ('Gochujang Chicken', 'Gochujang chicken burger and fries', 'https://akinori-s.github.io/mobile_order_reactgo/frontend/src/assets/gochujang_chicken.jpg');
+INSERT INTO PROMOTIONS (NAME, DESCRIPTION, IMG_PATH) VALUES ('Match Shake', 'Matcha shake and matcha icecream', 'https://akinori-s.github.io/mobile_order_reactgo/frontend/src/assets/matcha_shake.jpg');

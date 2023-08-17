@@ -17,6 +17,10 @@ func NewApplication(db *sql.DB) *Application {
 	menuRepository := repositories.NewMenuRepository(db)
 	menuHandler := handlers.NewMenuHandler(*menuRepository)
 
+	promotionRepository := repositories.NewPromotionRepository(db)
+	promotionHandler := handlers.NewPromotionHandler(*promotionRepository)
+
+
 	router := gin.Default()
 	config := cors.DefaultConfig()
 	config.AllowOrigins = []string{"http://localhost:5173"}
@@ -25,6 +29,7 @@ func NewApplication(db *sql.DB) *Application {
 	
 	router.GET("/menus", menuHandler.GetMenus)
 	router.GET("/menu_categories", menuHandler.GetMenuCategories)
+	router.GET("/promotions", promotionHandler.GetPromotions)
 	
 	return &Application{
 		Router: router,
