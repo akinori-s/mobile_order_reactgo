@@ -1,5 +1,5 @@
 import '../App.css'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { getMenuList, getMenuCategoryList } from '../api/menuApi'
 
 function MenuPage() {
@@ -48,7 +48,7 @@ function MenuPage() {
 			<div className="w-4/5 overflow-y-scroll flex flex-wrap divide-y divide-x items-stretch scroll-smooth">
 				<div></div>
 				{menuCategory.map((category) => (
-					<>
+					<React.Fragment key={category.id}>
 					<h2 
 						key={category.id} 
 						id={category.name}
@@ -69,7 +69,7 @@ function MenuPage() {
 						</button>
 					</div>
 					))}
-					</>
+					</React.Fragment>
 				))}
 			</div>
 		</div>
