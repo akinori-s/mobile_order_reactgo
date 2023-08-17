@@ -38,14 +38,14 @@ function MenuPage() {
 			{/* Sidebar */}
 			<div className="w-1/5 bg-gray-200 overflow-y-scroll divide-y">
 				{menuCategory.map((category) => (
-					<div key={category.id} className="py-2 pl-2 pr-2 border-slate-300 text-base md:text-xl lg:text-2xl">
+					<div key={category.id} className="py-3 pl-2 pr-2 border-slate-300 text-base md:text-xl lg:text-2xl">
 						<a href={`#${category.name}`}>{ category.name }</a>
 					</div>
 				))}
 			</div>
 
 			{/* Vertical scrolling menu */}
-			<div className="w-4/5 overflow-y-scroll flex flex-wrap divide-y divide-x items-stretch">
+			<div className="w-4/5 overflow-y-scroll flex flex-wrap divide-y divide-x items-stretch scroll-smooth">
 				<div></div>
 				{menuCategory.map((category) => (
 					<>
