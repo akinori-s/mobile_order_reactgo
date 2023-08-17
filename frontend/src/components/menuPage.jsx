@@ -36,27 +36,40 @@ function MenuPage() {
 	return (
 		<div className="h-4/5 flex overflow-hidden">
 			{/* Sidebar */}
-			<div className="w-1/5 bg-gray-200 overflow-y-scroll">
-				{menuCategory.map((item) => (
-					<div key={item.id} className="py-2 pl-2 pr-2 border-b">{ item.name }</div>
+			<div className="w-1/5 bg-gray-200 overflow-y-scroll divide-y">
+				{menuCategory.map((category) => (
+					<div key={category.id} className="py-2 pl-2 pr-2 border-slate-300">
+						<a href={`#${category.name}`}>{ category.name }</a>
+					</div>
 				))}
 			</div>
 
 			{/* Vertical scrolling menu */}
-			<div className="w-4/5 overflow-y-scroll flex flex-wrap divide-y divide-x items-start">
+			<div className="w-4/5 overflow-y-scroll flex flex-wrap divide-y divide-x items-stretch">
 				<div></div>
-				{menu.map((item) => (
-					<div key={item.id} className="bg-white p-3 flex flex-col w-1/2 md:w-1/3 lg:w-1/4">
-					<img 
-						src={`${item.img_path}`} 
-						alt={`${item.name} image`} 
-						className="w-full h-24 object-cover mb-2 rounded"
-					/>
-					<div className="text-center mb-2">{ item.name }</div>
-					<button className="px-4 py-2 bg-blue-500 text-white rounded w-full">
-						Add to Cart
-					</button>
-				</div>
+				{menuCategory.map((category) => (
+					<>
+					<h2 
+						key={category.id} 
+						id={category.name}
+						className='w-full text-left text-2xl p-2 font-bold bg-white'
+					>
+						{ category.name }
+					</h2>
+					{menu.filter(item => item.category_id == category.id).map((item) => (
+					<div key={item.id} className="bg-white p-3 flex flex-col w-1/2 md:w-1/3 lg:w-1/4 justify-between">
+						<img 
+							src={`${item.img_path}`} 
+							alt={`${item.name} image`} 
+							className="w-full h-24 object-cover mb-2 rounded"
+						/>
+						<div className="text-center mb-2">{ item.name }</div>
+						<button className="px-4 py-2 bg-blue-500 text-white rounded w-full">
+							Add to Cart
+						</button>
+					</div>
+					))}
+					</>
 				))}
 			</div>
 		</div>
