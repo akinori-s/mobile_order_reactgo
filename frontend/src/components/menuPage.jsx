@@ -38,7 +38,7 @@ function MenuPage() {
 			{/* Sidebar */}
 			<div className="w-1/5 bg-gray-200 overflow-y-scroll divide-y">
 				{menuCategory.map((category) => (
-					<div key={category.id} className="py-2 pl-2 pr-2 border-slate-300">
+					<div key={category.id} className="py-2 pl-2 pr-2 border-slate-300 text-base md:text-xl lg:text-2xl">
 						<a href={`#${category.name}`}>{ category.name }</a>
 					</div>
 				))}
@@ -61,10 +61,10 @@ function MenuPage() {
 						<img 
 							src={`${item.img_path}`} 
 							alt={`${item.name} image`} 
-							className="w-full h-24 object-cover mb-2 rounded"
+							className="w-full h-24 md:h-28 lg:h-36 object-cover mb-2 rounded"
 						/>
 						<div className="text-center mb-2">{ item.name }</div>
-						<button className="px-4 py-2 bg-blue-500 text-white rounded w-full">
+						<button className="px-2 py-1 text-sm bg-blue-500 text-white rounded w-full">
 							Add to Cart
 						</button>
 					</div>
