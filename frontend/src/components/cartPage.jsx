@@ -6,8 +6,25 @@ function CartPage() {
 
 	const handleQuantityChange = (id, change) => {
 		setCart(prevItems => 
-			prevItems.map(item => 
-				item.id === id ? { ...item, quantity: item.quantity + change } : item
+			prevItems.map(item => {
+				let adjChange = change;
+				if (item.quantity + change < 1)
+					adjChange = 0;
+				else if (item.quantity + change > 50)
+					adjChange = 0;
+				return (item.id === id ? { ...item, quantity: item.quantity + adjChange } : item);
+			})
+		);
+	}
+
+	const handleQuantityInput = (id, value) => {
+		if (value < 1)
+			value = 1;
+		else if (value > 50)
+			value = 50;
+		setCart(prevItems =>
+			prevItems.map(item =>
+				item.id === id ? { ...item, quantity: value } : item
 			)
 		);
 	}
@@ -36,7 +53,14 @@ function CartPage() {
 								>
 								-
 							</button>
-							<span className="border-t border-b px-4 py-1 mx-2">{item.quantity}</span>
+							<input 
+								type="number" 
+								className="border-t border-b px-4 py-1 w-12 text-center" 
+								min="1"
+								max="50"
+								onChange={e => handleQuantityInput(item.id, e.target.value)}
+								value={item.quantity} 
+							/>
 							<button 
 								onClick={() => handleQuantityChange(item.id, 1)} 
 								className="bg-green-500 text-white px-2 py-1 rounded-r"
