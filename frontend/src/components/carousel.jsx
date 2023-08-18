@@ -1,9 +1,10 @@
 import '../App.css'
 import { useState, useEffect } from 'react'
 import { getPromotionList } from '../api/promotionApi.js'
+import { usePromotion } from '../contexts/promotionContext.jsx';
 
 function Carousel() {
-	const [promotions, setPromotions] = useState([]);
+	const { promotions, setPromotions } = usePromotion();
 
 	useEffect(() => {
 		async function getPromotions() {

@@ -7,6 +7,7 @@ import AppLayout from './components/appLayout.jsx'
 import CheckoutPage from './components/checkoutPage.jsx'
 import { MenuProvider } from './contexts/menuContext.jsx'
 import { MenuCategoryProvider } from './contexts/menuCategoryContext.jsx'
+import { PromotionProvider } from './contexts/promotionContext.jsx'
 import { CartProvider } from './contexts/cartContext.jsx'
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
 			<BrowserRouter>
 				<MenuProvider>
 				<MenuCategoryProvider>
+				<PromotionProvider>
 				<CartProvider>
 					<Routes>
 						<Route element={<AppLayout />}>
@@ -26,6 +28,7 @@ function App() {
 					</Routes>
 					<FooterBar />
 				</CartProvider>
+				</PromotionProvider>
 				</MenuCategoryProvider>
 				</MenuProvider>
 			</BrowserRouter>
