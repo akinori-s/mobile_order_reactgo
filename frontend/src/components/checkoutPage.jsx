@@ -1,9 +1,30 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { executeCheckout } from '../api/checkoutApi.js'
 import { useCart } from '../contexts/cartContext.jsx';
 
 function CheckoutPage() {
 	const { cart, setCart } = useCart();
+
+  const handleCheckout = async () => {
+    // remove unnecessary fields. wip: find a better way to do this
+    const tmpCart = [...cart];
+    tmpCart.forEach((item) => {
+      delete item.name;
+      delete item.price;
+      delete item.img_path;
+      delete item.category_id;
+    });
+    try {
+      const data = await executeCheckout(tmpCart);
+      if (data) {
+        setCart([]);
+        alert("Order placed successfully!");
+      }
+    } catch (error) {
+      console.error("Failed to place order:", error);
+    }
+  };
 
   return (
     <>
@@ -88,7 +109,10 @@ function CheckoutPage() {
         </div>
       </div>
 
-      <button className="bg-blue-500 text-white p-4 mt-2 rounded w-full">
+      <button 
+        className="bg-blue-500 text-white p-4 mt-2 rounded w-full"
+        onClick={() => handleCheckout()}
+      >
         Confirm Purchase
       </button>
     </>
