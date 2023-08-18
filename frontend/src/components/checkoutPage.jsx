@@ -1,9 +1,53 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { useCart } from '../contexts/cartContext.jsx';
 
 function CheckoutPage() {
+	const { cart, setCart } = useCart();
+
   return (
     <>
       <div className="flex-1 overflow-y-scroll px-6 mt-8">
+        <div className="mb-4">
+          <h2 className="text-xl font-semibold mb-2">Cart</h2>
+          <div className="h-4/5 overflow-y-scroll bg-gray-100 divide-y">
+            <div></div>
+            { (cart.length === 0) ?
+              <div className="flex justify-center items-center h-full">
+                <span className="text-lg">Your cart is empty</span>
+              </div>
+            :
+            cart.map(item => (
+              <div key={item.id} className="flex items-center p-4">
+                <img 
+                  src={item.img_path} 
+                  alt={item.name} 
+                  className="w-12 h-12 object-cover rounded mr-4" 
+                />
+                <div className="flex-grow">
+                    <span className="block font-bold">{item.name}</span>
+                    <span className="block text-sm text-gray-500">${item.price.toFixed(2)} each</span>
+                </div>
+                <div className="flex flex-col items-center">
+                  <div className="px-4 py-1 w-auto text-center">
+                    {`Qty: ${item.quantity}`}
+                  </div>
+                  <span className="font-bold">${(item.price * item.quantity).toFixed(2)}</span>
+                </div>
+              </div>
+              ))}
+            <div></div>
+          </div>
+          <div className="flex justify-center mt-3">
+            <Link 
+              className='px-2 py-1 text-sm bg-blue-500 text-white text-center text-lg rounded items-end w-1/3'
+              to={`${(cart.length === 0) ? '/' : '/cart'}`}
+            >
+                {`${(cart.length === 0) ? 'Go to menu' : 'Edit cart'}`}
+            </Link>
+          </div>
+        </div>
+
         <div className="mb-4">
           <h2 className="text-xl font-semibold mb-2">Billing Information</h2>
           <input className="border p-2 w-full mb-2" type="text" placeholder="Full Name" />
