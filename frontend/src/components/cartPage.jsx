@@ -31,7 +31,9 @@ function CartPage() {
 
 	return (
         <div className="h-4/5 overflow-y-scroll bg-gray-100 divide-y">
-			<div></div>
+			<h2 className='w-full text-left text-2xl p-2 font-bold'>
+				Your Cart
+			</h2>
             { (cart.length === 0) ?
 				<div className="flex justify-center items-center h-full">
 					<span className="text-2xl">Your cart is empty</span>
