@@ -1,10 +1,13 @@
 import '../App.css'
 import React, { useState, useEffect } from 'react'
 import { getMenuList, getMenuCategoryList } from '../api/menuApi'
+import { useMenu } from '../contexts/menuContext.jsx';
+import { useCart } from '../contexts/cartContext.jsx';
 
 function MenuPage() {
-	const [menu, setMenu] = useState([]);
-	const [menuCategory, setMenuCategory] = useState([]);
+	const [ menuCategory, setMenuCategory ] = useState([]);
+	const { menu, setMenu } = useMenu();
+	const { cart, setCart } = useCart();
 
 	useEffect(() => {
 		async function getMenu() {
@@ -32,6 +35,17 @@ function MenuPage() {
 		getMenu();
 		getMenuCategory();
 	}, []);
+
+	function handleAddToCart(item) {
+		const newCart = [...cart];
+		const index = newCart.findIndex((cartItem) => cartItem.id === item.id);
+		if (index > -1) {
+			newCart[index].quantity += 1;
+		} else {
+			newCart.push({...item, quantity: 1});
+		}
+		setCart(newCart);
+	};
 
 	return (
 		<div className="h-4/5 flex overflow-hidden">
@@ -64,7 +78,10 @@ function MenuPage() {
 							className="w-full h-24 md:h-28 lg:h-36 object-cover mb-2 rounded"
 						/>
 						<div className="text-center mb-2">{ item.name }</div>
-						<button className="px-2 py-1 text-sm bg-blue-500 text-white rounded w-full">
+						<button 
+							className="px-2 py-1 text-sm bg-blue-500 text-white rounded w-full"
+							onClick={() => handleAddToCart(item)}
+						>
 							Add to Cart
 						</button>
 					</div>

@@ -5,20 +5,26 @@ import CartPage from './components/cartPage.jsx'
 import FooterBar from './components/footerBar.jsx'
 import AppLayout from './components/appLayout.jsx'
 import CheckoutPage from './components/checkoutPage.jsx'
+import { MenuProvider } from './contexts/menuContext.jsx'
+import { CartProvider } from './contexts/cartContext.jsx'
 
 function App() {
 
 	return (
 		<div className="flex flex-col bg-gray-100 h-screen">
 			<BrowserRouter>
-				<Routes>
-					<Route element={<AppLayout />}>
-						<Route path='/' element={<MenuPage />} />
-						<Route path='/cart' element={<CartPage />} />
-					</Route>
-					<Route path='/checkout' element={<CheckoutPage />} />
-				</Routes>
-			<FooterBar />
+				<MenuProvider>
+				<CartProvider>
+					<Routes>
+						<Route element={<AppLayout />}>
+							<Route path='/' element={<MenuPage />} />
+							<Route path='/cart' element={<CartPage />} />
+						</Route>
+						<Route path='/checkout' element={<CheckoutPage />} />
+					</Routes>
+					<FooterBar />
+				</CartProvider>
+				</MenuProvider>
 			</BrowserRouter>
 		</div>
 	)

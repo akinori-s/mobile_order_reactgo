@@ -1,25 +1,11 @@
 import React, { useState } from 'react';
+import { useCart } from '../contexts/cartContext.jsx';
 
 function CartPage() {
-	const [cartItems, setCartItems] = useState([
-		{
-            id: 1,
-            name: "Sample Item 1",
-            quantity: 1,
-            price: 10.00,
-            thumbnail: "https://via.placeholder.com/50"
-        },
-        {
-            id: 2,
-            name: "Sample Item 2",
-            quantity: 2,
-            price: 15.00,
-            thumbnail: "https://via.placeholder.com/50"
-        },
-	]);
+	const { cart, setCart } = useCart();
 
 	const handleQuantityChange = (id, change) => {
-		setCartItems(prevItems => 
+		setCart(prevItems => 
 			prevItems.map(item => 
 				item.id === id ? { ...item, quantity: item.quantity + change } : item
 			)
@@ -29,7 +15,12 @@ function CartPage() {
 	return (
         <div className="h-4/5 overflow-y-scroll bg-gray-100 divide-y">
 			<div></div>
-            {cartItems.map(item => (
+            { (cart.length === 0) ?
+				<div className="flex justify-center items-center h-full">
+					<span className="text-2xl">Your cart is empty</span>
+				</div>
+			:
+			cart.map(item => (
 				<div key={item.id} className="flex items-center p-4">
                     <img src={item.thumbnail} alt={item.name} className="w-12 h-12 object-cover rounded mr-4" />
                     <div className="flex-grow">
