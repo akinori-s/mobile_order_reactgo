@@ -2,11 +2,12 @@ import '../App.css'
 import React, { useState, useEffect } from 'react'
 import { getMenuList, getMenuCategoryList } from '../api/menuApi'
 import { useMenu } from '../contexts/menuContext.jsx';
+import { useMenuCategory } from '../contexts/menuCategoryContext.jsx';
 import { useCart } from '../contexts/cartContext.jsx';
 
 function MenuPage() {
-	const [ menuCategory, setMenuCategory ] = useState([]);
 	const { menu, setMenu } = useMenu();
+	const { menuCategory, setMenuCategory } = useMenuCategory();
 	const { cart, setCart } = useCart();
 
 	useEffect(() => {

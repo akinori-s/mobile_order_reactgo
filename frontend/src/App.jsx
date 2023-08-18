@@ -6,6 +6,7 @@ import FooterBar from './components/footerBar.jsx'
 import AppLayout from './components/appLayout.jsx'
 import CheckoutPage from './components/checkoutPage.jsx'
 import { MenuProvider } from './contexts/menuContext.jsx'
+import { MenuCategoryProvider } from './contexts/menuCategoryContext.jsx'
 import { CartProvider } from './contexts/cartContext.jsx'
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
 		<div className="flex flex-col bg-gray-100 h-screen">
 			<BrowserRouter>
 				<MenuProvider>
+				<MenuCategoryProvider>
 				<CartProvider>
 					<Routes>
 						<Route element={<AppLayout />}>
@@ -24,6 +26,7 @@ function App() {
 					</Routes>
 					<FooterBar />
 				</CartProvider>
+				</MenuCategoryProvider>
 				</MenuProvider>
 			</BrowserRouter>
 		</div>
