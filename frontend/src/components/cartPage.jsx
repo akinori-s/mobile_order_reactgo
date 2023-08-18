@@ -29,6 +29,10 @@ function CartPage() {
 		);
 	}
 
+	const handleDeleteFromCart = (id) => {
+		setCart(prevItems => prevItems.filter(item => item.id !== id));
+	}
+
 	return (
         <div className="h-4/5 overflow-y-scroll bg-gray-100 divide-y">
 			<h2 className='w-full text-left text-2xl p-2 font-bold'>
@@ -52,13 +56,21 @@ function CartPage() {
                     </div>
 					<div className="flex flex-col items-center">
 						<div className="flex items-center">
+							{(item.quantity === 1) ?
+							<button 
+								onClick={() => handleDeleteFromCart(item.id)} 
+								className="bg-red-500 text-white px-2 py-1 rounded-l"
+							>
+								🗑
+							</button>
+							:
 							<button 
 								onClick={() => handleQuantityChange(item.id, -1)} 
 								className="bg-red-500 text-white px-2 py-1 rounded-l"
-								disabled={item.quantity <= 1}
-								>
+							>
 								-
 							</button>
+							}
 							<input 
 								type="number" 
 								className="border-t border-b px-4 py-1 w-12 text-center" 
