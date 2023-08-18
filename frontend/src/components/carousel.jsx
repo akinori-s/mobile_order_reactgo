@@ -18,7 +18,8 @@ function Carousel() {
 				console.error("Failed to fetch promotions:", error);
 			}
 		}
-		getPromotions();
+		if (promotions.length === 0)
+			getPromotions();
 	}, []);
 
 	return (

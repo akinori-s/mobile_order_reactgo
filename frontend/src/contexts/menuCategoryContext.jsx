@@ -7,7 +7,7 @@ export const useMenuCategory = () => {
 };
 
 export function MenuCategoryProvider({ children }) {
-	const [menuCategory, setMenuCategory] = useState(null);
+	const [menuCategory, setMenuCategory] = useState([]);
 
 	return (
 		<MenuCategoryContext.Provider value={{ menuCategory, setMenuCategory }}>

@@ -33,8 +33,10 @@ function MenuPage() {
 				console.error("Failed to fetch meny categories:", error);
 			}
 		}
-		getMenu();
-		getMenuCategory();
+		if (menu.length === 0)
+			getMenu();
+		if (menuCategory.length === 0)
+			getMenuCategory();
 	}, []);
 
 	function handleAddToCart(item) {
