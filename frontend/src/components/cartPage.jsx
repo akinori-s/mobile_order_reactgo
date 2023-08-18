@@ -39,7 +39,11 @@ function CartPage() {
 			:
 			cart.map(item => (
 				<div key={item.id} className="flex items-center p-4">
-                    <img src={item.thumbnail} alt={item.name} className="w-12 h-12 object-cover rounded mr-4" />
+                    <img 
+						src={item.img_path} 
+						alt={item.name} 
+						className="w-12 h-12 object-cover rounded mr-4" 
+					/>
                     <div className="flex-grow">
                         <span className="block font-bold">{item.name}</span>
                         <span className="block text-sm text-gray-500">${item.price.toFixed(2)} each</span>
