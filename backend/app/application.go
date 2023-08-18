@@ -20,6 +20,9 @@ func NewApplication(db *sql.DB) *Application {
 	promotionRepository := repositories.NewPromotionRepository(db)
 	promotionHandler := handlers.NewPromotionHandler(*promotionRepository)
 
+	checkoutRepository := repositories.NewCheckoutRepository(db)
+	// checkoutUsecase := usecases.NewCheckoutUsecase(*checkoutRepository) // wip: refactor to uses cases later on
+	checkoutHandler := handlers.NewCheckoutHandler(*checkoutRepository)
 
 	router := gin.Default()
 	config := cors.DefaultConfig()
@@ -30,6 +33,7 @@ func NewApplication(db *sql.DB) *Application {
 	router.GET("/menus", menuHandler.GetMenus)
 	router.GET("/menu_categories", menuHandler.GetMenuCategories)
 	router.GET("/promotions", promotionHandler.GetPromotions)
+	router.POST("/checkout", checkoutHandler.Checkout)
 	
 	return &Application{
 		Router: router,
