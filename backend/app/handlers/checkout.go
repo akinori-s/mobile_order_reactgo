@@ -65,6 +65,7 @@ func (h *CheckoutHandler) Checkout(c *gin.Context) {
 	// wip: insert order detail data to order_detail table
 	for _, order_detail := range order_details {
 		order_detail.Transaction_id = transaction.ID
+		order_detail.Price = id_price_map[order_detail.Item_id]
 		order_detail.Subtotal = order_detail.Price * float32(order_detail.Quantity)
 		err = h.CheckoutRepository.InsertOrderDetail(&order_detail)
 		if err != nil {

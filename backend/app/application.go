@@ -24,6 +24,9 @@ func NewApplication(db *sql.DB) *Application {
 	// checkoutUsecase := usecases.NewCheckoutUsecase(*checkoutRepository) // wip: refactor to uses cases later on
 	checkoutHandler := handlers.NewCheckoutHandler(*checkoutRepository)
 
+	monitorRepository := repositories.NewMonitorRepository(db)
+	monitorHandler := handlers.NewMonitorHandler(*monitorRepository)
+
 	router := gin.Default()
 	config := cors.DefaultConfig()
 	config.AllowOrigins = []string{"http://localhost:5173"}
@@ -34,6 +37,9 @@ func NewApplication(db *sql.DB) *Application {
 	router.GET("/menu_categories", menuHandler.GetMenuCategories)
 	router.GET("/promotions", promotionHandler.GetPromotions)
 	router.POST("/checkout", checkoutHandler.Checkout)
+
+	router.GET("/orders", monitorHandler.GetPendingOrders)
+	router.PUT("/orders/complete-order", monitorHandler.UpdateOrderStatus)
 	
 	return &Application{
 		Router: router,
