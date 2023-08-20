@@ -37,6 +37,10 @@ func NewApplication(db *sql.DB) *Application {
 	router.GET("/menu_categories", menuHandler.GetMenuCategories)
 	router.GET("/promotions", promotionHandler.GetPromotions)
 	router.POST("/checkout", checkoutHandler.Checkout)
+	
+	router.POST("/menus/add", menuHandler.AddMenuItem)
+	router.PUT("/menus/update/:menuId", menuHandler.UpdateMenuItem)
+	router.DELETE("/menus/delete/:menuId", menuHandler.DeleteMenuItem)
 
 	router.GET("/orders", monitorHandler.GetPendingOrders)
 	router.PUT("/orders/complete-order", monitorHandler.UpdateOrderStatus)
