@@ -6,6 +6,7 @@ import FooterBar from './components/footerBar.jsx'
 import AppLayout from './components/appLayout.jsx'
 import CheckoutPage from './components/checkoutPage.jsx'
 import OrderMonitor from './components/orderMonitorPage.jsx'
+import MenuManager from './components/menuManagerPage.jsx'
 import { MenuProvider } from './contexts/menuContext.jsx'
 import { MenuCategoryProvider } from './contexts/menuCategoryContext.jsx'
 import { PromotionProvider } from './contexts/promotionContext.jsx'
@@ -18,6 +19,17 @@ function App() {
 			<BrowserRouter>
                 <Routes>
                     <Route path="/order-monitor" element={<OrderMonitor />} />
+                    <Route path="/manage-menu" element={
+                        <MenuProvider>
+                        <MenuCategoryProvider>
+                        <PromotionProvider>
+                        <CartProvider>
+                            <MenuManager />
+                        </CartProvider>
+                        </PromotionProvider>
+                        </MenuCategoryProvider>
+                        </MenuProvider>
+                    } />
 
 					{/* wip: need to better undestand how to make nested routes */}
                     <Route path="/" element={

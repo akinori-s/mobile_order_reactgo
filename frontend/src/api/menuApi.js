@@ -26,3 +26,30 @@ export const getMenuCategoryList = async () => {
 		throw error.response.data;
 	}
 };
+
+export const addMenuItem = async (menuItem) => {
+	try {
+		const response = await api.post(`/menus/add`, menuItem);
+		return response.data;
+	} catch (error) {
+		throw error.response.data;
+	}
+};
+
+export const updateMenuItem = async (menuItem) => {
+	try {
+		const response = await api.put(`/menus/update/${menuItem.id}`, menuItem);
+		return response.data;
+	} catch (error) {
+		throw error.response.data;
+	}
+};
+
+export const deleteMenuItem = async (id) => {
+	try {
+		const response = await api.delete(`/menus/delete/${id}`);
+		return response.data;
+	} catch (error) {
+		throw error.response.data;
+	}
+};
